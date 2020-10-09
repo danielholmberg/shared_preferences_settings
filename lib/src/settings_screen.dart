@@ -906,6 +906,7 @@ class _CheckboxSettingsTileState extends State<CheckboxSettingsTile>
 class SwitchSettingsTile extends StatefulWidget {
   final String settingKey;
   final bool defaultValue;
+  final Function onChanged;
   final String title;
   final String subtitle;
   final String subtitleIfOff;
@@ -924,6 +925,7 @@ class SwitchSettingsTile extends StatefulWidget {
   SwitchSettingsTile({
     @required this.settingKey,
     @required this.title,
+    this.onChanged,
     this.defaultValue = false,
     this.subtitle,
     this.subtitleIfOff,
@@ -979,7 +981,7 @@ class _SwitchSettingsTileState extends State<SwitchSettingsTile>
               visibleByDefault: widget.visibleByDefault,
               widget: _SettingsSwitch(
                 value: value,
-                onChanged: _onChanged,
+                onChanged: widget.onChanged ?? _onChanged,
                 enabled: enabled,
               ),
             );
